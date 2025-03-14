@@ -2,7 +2,7 @@
     "name": "resourcemonitor",
     "displayName": "Resource Monitor with Swap",
     "description": "Displays current CPU stats, memory/swap/disk consumption, and battery percentage remaining.",
-    "version": "1.0.8",
+    "version": "1.0.10",
     "publisher": "pearj",
     "engines": {
         "vscode": "^1.25.0"
@@ -123,13 +123,10 @@
         "url": "https://github.com/pearj/resmon.git"
     },
     "scripts": {
-        "compile": "npm run check-types && node esbuild.js",
-        "check-types": "tsc --noEmit",
-        "watch": "npm-run-all -p watch:*",
-        "watch:esbuild": "node esbuild.js --watch",
-        "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+        "compile": "webpack --mode development",
+        "watch": "webpack --mode development --watch",
         "vscode:prepublish": "npm run package",
-        "package": "npm run check-types && node esbuild.js --production"
+        "package": "webpack --mode production --devtool hidden-source-map"
     },
     "dependencies": {
         "systeminformation": "^5.25.11"
@@ -137,9 +134,11 @@
     "devDependencies": {
         "@types/mocha": "^10.0.10",
         "@types/node": "^22.13.10",
-        "esbuild": "^0.25.1",
         "systeminformation": "^5.25.11",
+        "ts-loader": "^9.5.2",
         "typescript": "^5.8.2",
-        "vscode": "^1.1.37"
+        "vscode": "^1.1.37",
+        "webpack": "^5.98.0",
+        "webpack-cli": "^6.0.1"
     }
 }
