@@ -1,8 +1,7 @@
 'use strict';
 import { window, ExtensionContext, StatusBarAlignment, StatusBarItem, workspace, WorkspaceConfiguration } from 'vscode';
 import { Units, DiskSpaceFormat, DiskSpaceFormatMappings, FreqMappings, MemMappings } from './constants';
-
-var si = require('systeminformation');
+import * as si from 'systeminformation';
 
 export function activate(context: ExtensionContext) {
     var resourceMonitor: ResMon = new ResMon();
@@ -93,9 +92,9 @@ class CpuFreq extends Resource {
     }
 
     async getDisplay(): Promise<string> {
-        let cpuCurrentSpeed = await si.cpuCurrentspeed();
+        let cpuCurrentSpeed = await si.cpuCurrentSpeed();
         // systeminformation returns frequency in terms of GHz by default
-        let speedHz = parseFloat(cpuCurrentSpeed.avg) * Units.G;
+        let speedHz = cpuCurrentSpeed.avg * Units.G;
         let formattedWithUnits = this.getFormattedWithUnits(speedHz);
         return `$(dashboard) ${(formattedWithUnits)}`;
     }
@@ -114,7 +113,7 @@ class Battery extends Resource {
     }
 
     protected async isShown(): Promise<boolean> {
-        let hasBattery = (await si.battery()).hasbattery;
+        let hasBattery = (await si.battery()).hasBattery;
         return Promise.resolve(hasBattery && this._config.get("show.battery", false));
     }
 

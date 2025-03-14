@@ -16,7 +16,7 @@
         "theme": "dark"
     },
     "activationEvents": [
-        "*"
+        "onStartupFinished"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -123,18 +123,22 @@
         "url": "https://github.com/pearj/resmon.git"
     },
     "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "watch": "tsc -watch -p ./"
+        "compile": "npm run check-types && node esbuild.js",
+        "check-types": "tsc --noEmit",
+        "watch": "npm-run-all -p watch:*",
+        "watch:esbuild": "node esbuild.js --watch",
+        "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+        "vscode:prepublish": "npm run package",
+        "package": "npm run check-types && node esbuild.js --production"
     },
     "dependencies": {
         "systeminformation": "^5.25.11"
     },
     "devDependencies": {
-        "systeminformation": "^5.25.11",
         "@types/mocha": "^10.0.10",
         "@types/node": "^22.13.10",
+        "esbuild": "^0.25.1",
+        "systeminformation": "^5.25.11",
         "typescript": "^5.8.2",
         "vscode": "^1.1.37"
     }
