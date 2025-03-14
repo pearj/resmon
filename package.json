@@ -2,7 +2,7 @@
     "name": "resourcemonitor",
     "displayName": "Resource Monitor with Swap",
     "description": "Displays current CPU stats, memory/swap/disk consumption, and battery percentage remaining.",
-    "version": "1.0.8",
+    "version": "1.0.11",
     "publisher": "pearj",
     "engines": {
         "vscode": "^1.25.0"
