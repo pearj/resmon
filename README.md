@@ -1,8 +1,10 @@
 # Resource Monitor
 
+This is a fork of https://github.com/Njanderson/resmon to enable swap monitoring as well.
+
 ## Features
 
-Display CPU frequency, usage, memory consumption, and battery percentage remaining within the VSCode status bar.
+Display CPU frequency, usage, memory consumption, swap consumption and battery percentage remaining within the VSCode status bar.
 
 ## Screenshots
 
@@ -35,6 +37,9 @@ A better solution for Windows CPU Usage would be great. I investigated alternati
 ---
 
 ## Change Log
+
+### [1.0.8]
+- Add swap memory monitoring. Upgrade packages to latest.
 
 ### [1.0.7]
 - Changed underlying CPU frequency API, added hiding battery/CPU temp information if the device lacks a battery/doesn't support CPU temp sensing, added some clarifications about CPU frequency behavior on Windows.

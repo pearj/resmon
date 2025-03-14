@@ -63,7 +63,7 @@ class CpuUsage extends Resource {
 
     async getDisplay(): Promise<string> {
         let currentLoad = await si.currentLoad();
-        return `$(pulse) ${(100 - currentLoad.currentload_idle).toFixed(this.getPrecision())}%`;
+        return `$(pulse) ${(100 - currentLoad.currentLoadIdle).toFixed(this.getPrecision())}%`;
     }
 
 }
@@ -137,7 +137,10 @@ class Memory extends Resource {
         let memoryData = await si.mem();
         let memoryUsedWithUnits = memoryData.active / memDivisor;
         let memoryTotalWithUnits = memoryData.total / memDivisor;
-        return `$(ellipsis) ${(memoryUsedWithUnits).toFixed(this.getPrecision())}/${(memoryTotalWithUnits).toFixed(this.getPrecision())} ${unit}`;
+        let swapUsedWithUnits = memoryData.swapused / memDivisor;
+        let swapTotalWithUnits = memoryData.swaptotal / memDivisor;
+        return `$(ellipsis) ${(memoryUsedWithUnits).toFixed(this.getPrecision())}/${(memoryTotalWithUnits).toFixed(this.getPrecision())} ${unit}`
+            + ` $(arrow-swap) ${(swapUsedWithUnits).toFixed(this.getPrecision())}/${(swapTotalWithUnits).toFixed(this.getPrecision())} ${unit}`;
     }
 }
 

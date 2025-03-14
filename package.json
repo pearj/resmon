@@ -1,9 +1,9 @@
 {
     "name": "resourcemonitor",
-    "displayName": "Resource Monitor",
-    "description": "Displays current CPU stats, memory/disk consumption, and battery percentage remaining.",
-    "version": "1.0.7",
-    "publisher": "mutantdino",
+    "displayName": "Resource Monitor with Swap",
+    "description": "Displays current CPU stats, memory/swap/disk consumption, and battery percentage remaining.",
+    "version": "1.0.8",
+    "publisher": "pearj",
     "engines": {
         "vscode": "^1.25.0"
     },
@@ -120,7 +120,7 @@
         }
     },
     "repository": {
-        "url": "https://github.com/Njanderson/resmon.git"
+        "url": "https://github.com/pearj/resmon.git"
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
